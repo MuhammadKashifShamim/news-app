@@ -6,21 +6,21 @@ import Layout from "../../components/Layout"
 import { PostProps } from "../../components/Post"
 import prisma from '../../lib/prisma';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const post = await prisma.article.findUnique({
-      where: {
-        id: Number(params?.id),
+export async function getServerSideProps({ params }:any) {
+  const post = await prisma.article.findUnique({
+    where: {
+      id: Number(params?.id),
+    },
+    include: {
+      author: {
+        select: { name: true },
       },
-      include: {
-        author: {
-          select: { name: true },
-        },
-      },
-    });
-    return {
-      props: post,
-    };
-  };
+    },
+  })
+  return {
+    props: post,
+  }
+}
 
 const Post: React.FC<PostProps> = (props) => {
   let title = props.title
