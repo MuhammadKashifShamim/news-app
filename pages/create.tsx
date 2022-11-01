@@ -46,7 +46,7 @@ const Draft: React.FC<Props> = (props) => {
     <Layout>
       <div>
         <form onSubmit={submitData}>
-          <h1>New Draft</h1>
+          <h1 className="header">New Draft</h1>
           <select 
             name="category" 
             id="category"
@@ -78,6 +78,11 @@ const Draft: React.FC<Props> = (props) => {
         </form>
       </div>
       <style jsx>{`
+      .header {
+        font-size: 25px;
+        font-weight: bold;
+        color: #3C4048;
+      }
         .page {
           background: var(--geist-background);
           padding: 3rem;

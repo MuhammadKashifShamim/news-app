@@ -2,6 +2,7 @@
 import React from "react";
 import Router from "next/router";
 import ReactMarkdown from 'react-markdown';
+import styles from '../styles/markdown-styles.module.css';
 
 export type PostProps = {
   id: string;
@@ -18,14 +19,27 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
   return (
     <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
-      <h2>{post.title}</h2>
-      <small>By {authorName}</small>
-      <ReactMarkdown children={post.content} />
+      <h2 className="post-header">{post.title}</h2>
+      <small className="author">By {authorName}</small>
+      <ReactMarkdown className={styles.reactMarkDown} children={post.content} />
       <style jsx>{`
+      .post-header {
+        font-size: 20px;
+        font-weight: bold;
+        color: #006d77;
+      }
+      .author{
+        color: #83c5be;
+      }
         div {
+          background-color: #EDF6F9;
           color: inherit;
           padding: 2rem;
         }
+        .markdown a {
+          color: #fff !important;
+        }
+        
       `}</style>
     </div>
   );

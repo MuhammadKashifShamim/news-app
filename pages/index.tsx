@@ -27,7 +27,7 @@ const Blog: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
-        <h1>Public Feed</h1>
+        <h1 className="header">Public Feed</h1>
         <main>
           {props.feed.map((post) => (
             <div key={post.id} className="post">
@@ -37,6 +37,11 @@ const Blog: React.FC<Props> = (props) => {
         </main>
       </div>
       <style jsx>{`
+        .header {
+          font-size: 25px;
+          font-weight: bold;
+          color: #3C4048;
+        }
         .post {
           background: white;
           transition: box-shadow 0.1s ease-in;

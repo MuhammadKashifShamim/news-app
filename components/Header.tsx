@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
@@ -122,7 +123,7 @@ const Header: React.FC = () => {
           </a>
         </Link>
         <Link href="/drafts">
-          <a data-active={isActive('/drafts')}>My drafts</a>
+          <a className="bold" data-active={isActive('/drafts')}>Drafts</a>
         </Link>
         <style jsx>{`
           .bold {
@@ -137,6 +138,7 @@ const Header: React.FC = () => {
 
           .left a[data-active='true'] {
             color: gray;
+            font-weight: bold;
           }
 
           a + a {
@@ -147,16 +149,23 @@ const Header: React.FC = () => {
     );
     right = (
       <div className="right">
+         <Image
+            src={session?.user?.image}
+            alt="Picture of the author"
+            width={40}
+            height={40}
+            style={{borderRadius: 20}}
+          />
         <p>
-          {session.user.name} ({session.user.email})
+          {session?.user?.name}
         </p>
         <Link href="/create">
           <button>
-            <a>New post</a>
+            <a>New Article</a>
           </button>
         </Link>
         <button onClick={() => signOut()}>
-          <a>Log out</a>
+          <a>Log Out</a>
         </button>
         <style jsx>{`
           a {

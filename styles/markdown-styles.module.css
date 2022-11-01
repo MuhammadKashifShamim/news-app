@@ -1,0 +1,22 @@
+.reactMarkDown {
+  padding-top: 1rem;
+}
+
+.reactMarkDown ul {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  list-style: disc outside none;
+}
+.reactMarkDown p {
+    color: #505050
+}
+.reactMarkDown a {
+  color: #e29578;
+  text-decoration: underline;
+}
+
+.reactMarkDown ul li {
+  margin-left: 2em;
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
