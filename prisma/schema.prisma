@@ -27,9 +27,9 @@ model Category {
 }
 
 model CategoriesOnArticles {
-  article    Article  @relation(fields: [articleId], references: [id])
+  article    Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
   articleId  Int // relation scalar field (used in the `@relation` attribute above)
-  category   Category  @relation(fields: [categoryId], references: [id])
+  category   Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int // relation scalar field (used in the `@relation` attribute above)
   assignedAt DateTime @default(now())
   assignedBy String
