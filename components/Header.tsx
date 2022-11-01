@@ -86,9 +86,9 @@ const Header: React.FC = () => {
   if (!session) {
     right = (
       <div className="right">
-        <Link href="/api/auth/signin">
+        {/* <Link href="/api/auth/signin">
           <a data-active={isActive('/signup')}>Log in</a>
-        </Link>
+        </Link> */}
         <style jsx>{`
           a {
             text-decoration: none;
@@ -149,6 +149,8 @@ const Header: React.FC = () => {
     );
     right = (
       <div className="right">
+        <div className='inline'>
+        <div className='user-profile'>
          <Image
             src={session?.user?.image}
             alt="Picture of the author"
@@ -156,9 +158,12 @@ const Header: React.FC = () => {
             height={40}
             style={{borderRadius: 20}}
           />
-        <p>
+        <span>
           {session?.user?.name}
-        </p>
+        </span>
+        </div>
+
+        </div>
         <Link href="/create">
           <button>
             <a>New Article</a>
@@ -168,6 +173,18 @@ const Header: React.FC = () => {
           <a>Log Out</a>
         </button>
         <style jsx>{`
+          .user-profile{
+            background-color:transparent;
+            display: flex;
+            align-items:center;
+          }
+          .user-profile span{
+            margin-left:10px;
+          }
+          .inline{
+            display: inline-block;
+            padding-top:10px;
+          }
           a {
             text-decoration: none;
             color: var(--geist-foreground);
@@ -185,18 +202,19 @@ const Header: React.FC = () => {
           }
 
           .right {
+            display: flex;
             margin-left: auto;
+            align-items:center;
           }
 
           .right a {
             border: 1px solid var(--geist-foreground);
             padding: 0.5rem 1rem;
+            margin-top: 10px;
+            margin-right:5px;
             border-radius: 3px;
           }
 
-          button {
-            border: none;
-          }
         `}</style>
       </div>
     );
