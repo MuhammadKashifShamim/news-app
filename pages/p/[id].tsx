@@ -9,7 +9,9 @@ import { useSession } from 'next-auth/react';
 import prisma from '../../lib/prisma';
 import styles from '../../styles/markdown-styles.module.css';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+
+export async function getServerSideProps({ params }) {
+  // console.log(typeof (params?.id));
   const post = await prisma.article.findUnique({
     where: {
       id: Number(params?.id),
@@ -19,10 +21,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         select: { name: true, email: true },
       },
     },
-  })
+  });
   return {
     props: post,
-  }
+  };
 }
 
 async function publishPost(id: string): Promise<void> {

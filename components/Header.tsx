@@ -40,7 +40,7 @@ const Header: React.FC = () => {
     </div>
   );
 
-  let right = null;
+  let right = null ?? <div className="right"></div>;
 
   if (status === 'loading') {
     left = (
@@ -152,7 +152,7 @@ const Header: React.FC = () => {
         <div className='inline'>
         <div className='user-profile'>
          <Image
-            src={session?.user?.image}
+            src={session?.user?.image ?? ''}
             alt="Picture of the author"
             width={40}
             height={40}

@@ -4,7 +4,7 @@ import prisma from '../../../lib/prisma';
 // POST /api/post
 // Required fields in body: title
 // Optional fields in body: content
-export default async function handle(req, res) {
+export default async function handle(req: any, res: any) {
   const { title, content, category } = req.body;
 
   const session = await getSession({ req });
@@ -15,7 +15,7 @@ export default async function handle(req, res) {
       categories: {
         create: [
             {
-                assignedBy:session?.user?.name,
+                assignedBy:session?.user?.name!,
                 category:{
                     connect:{
                         id: parseInt(category)
@@ -24,7 +24,7 @@ export default async function handle(req, res) {
             }
         ]
     },
-      author: { connect: { email: session?.user?.email } },
+      author: { connect: { email: session?.user?.email! } },
     },
   });
   res.json(result);
