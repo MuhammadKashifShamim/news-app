@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
+import { DarkThemeToggle, Navbar } from "flowbite-react";
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
@@ -221,17 +222,44 @@ const Header: React.FC = () => {
   }
 
   return (
-    <nav>
-      {left}
-      {right}
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          align-items: center;
-        }
-      `}</style>
-    </nav>
+    <header className="sticky top-0 z-20">
+    <Navbar fluid>
+      <Navbar.Brand href="/">
+        <Image
+          alt="Flowbite logo"
+          height="24"
+          src="/favicon.ico"
+          width="24"
+        />
+        <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
+          Flowbite
+        </span>
+      </Navbar.Brand>
+      <div className="flex md:order-2">
+        <Navbar.Toggle />
+        <DarkThemeToggle />
+      </div>
+      <Navbar.Collapse>
+        <Navbar.Link href="/" active>
+          Feed
+        </Navbar.Link>
+        <Navbar.Link href="/drafts">Drafts</Navbar.Link>
+        <Navbar.Link href="/create">New Article</Navbar.Link>
+        <Navbar.Link href="/">Log Out</Navbar.Link>
+      </Navbar.Collapse>
+    </Navbar>
+  </header>
+    // <nav>
+    //   {left}
+    //   {right}
+    //   <style jsx>{`
+    //     nav {
+    //       display: flex;
+    //       padding: 2rem;
+    //       align-items: center;
+    //     }
+    //   `}</style>
+    // </nav>
   );
 };
 
