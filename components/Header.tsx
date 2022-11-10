@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { DarkThemeToggle, Navbar } from "flowbite-react";
+import { DarkThemeToggle, Navbar, Dropdown, Avatar } from "flowbite-react";
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
@@ -222,33 +222,64 @@ const Header: React.FC = () => {
   }
 
   return (
-    <header className="sticky top-0 z-20">
-    <Navbar fluid>
-      <Navbar.Brand href="/">
-        <Image
-          alt="Flowbite logo"
-          height="24"
-          src="/favicon.ico"
-          width="24"
-        />
-        <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
-          Flowbite
+    <Navbar
+  fluid={true}
+  rounded={true}
+>
+  <Navbar.Brand href="https://flowbite.com/">
+    <Image
+      src="https://flowbite.com/docs/images/logo.svg"
+      className="mr-3 h-6 sm:h-9"
+      alt="Flowbite Logo"
+      width="24"
+      height="24"
+    />
+    <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+      Flowbite
+    </span>
+  </Navbar.Brand>
+  <div className="flex md:order-2">
+    <Dropdown
+      arrowIcon={false}
+      inline={true}
+      label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
+    >
+      <Dropdown.Header>
+        <span className="block text-sm">
+          Bonnie Green
         </span>
-      </Navbar.Brand>
-      <div className="flex md:order-2">
-        <Navbar.Toggle />
-        <DarkThemeToggle />
-      </div>
-      <Navbar.Collapse>
-        <Navbar.Link href="/" active>
-          Feed
-        </Navbar.Link>
-        <Navbar.Link href="/drafts">Drafts</Navbar.Link>
-        <Navbar.Link href="/create">New Article</Navbar.Link>
-        <Navbar.Link href="/">Log Out</Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
-  </header>
+        <span className="block truncate text-sm font-medium">
+          name@flowbite.com
+        </span>
+      </Dropdown.Header>
+      <Dropdown.Item>
+        Sign out
+      </Dropdown.Item>
+    </Dropdown>
+    <Navbar.Toggle />
+    <DarkThemeToggle />
+  </div>
+  <Navbar.Collapse>
+    <Navbar.Link
+      href="/navbars"
+      active={true}
+    >
+      Home
+    </Navbar.Link>
+    <Navbar.Link href="/navbars">
+      About
+    </Navbar.Link>
+    <Navbar.Link href="/navbars">
+      Services
+    </Navbar.Link>
+    <Navbar.Link href="/navbars">
+      Pricing
+    </Navbar.Link>
+    <Navbar.Link href="/navbars">
+      Contact
+    </Navbar.Link>
+  </Navbar.Collapse>
+</Navbar>
     // <nav>
     //   {left}
     //   {right}
