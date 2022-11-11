@@ -222,34 +222,32 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Navbar
-  fluid={true}
-  rounded={true}
+    <Navbar fluid={true} rounded={true}
 >
   <Navbar.Brand href="https://flowbite.com/">
     <Image
       src="https://flowbite.com/docs/images/logo.svg"
-      className="mr-3 h-6 sm:h-9"
+      className="h-6 sm:h-9"
       alt="Flowbite Logo"
       width="24"
       height="24"
     />
-    <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+    <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
       Flowbite
     </span>
   </Navbar.Brand>
-  <div className="flex md:order-2">
+  <div className="absolute right-0 flex justify-between">
     <Dropdown
       arrowIcon={false}
       inline={true}
-      label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
+      label={<Avatar alt="User settings" className='mr-2' img={session?.user?.image ?? ''} rounded={true}/>}
     >
       <Dropdown.Header>
         <span className="block text-sm">
-          Bonnie Green
+        {session?.user?.name}
         </span>
         <span className="block truncate text-sm font-medium">
-          name@flowbite.com
+        {session?.user?.email}
         </span>
       </Dropdown.Header>
       <Dropdown.Item>
@@ -257,9 +255,9 @@ const Header: React.FC = () => {
       </Dropdown.Item>
     </Dropdown>
     <Navbar.Toggle />
-    <DarkThemeToggle />
+    <DarkThemeToggle className='mr-2'/>
   </div>
-  <Navbar.Collapse>
+  <Navbar.Collapse className='ml-5'>
     <Navbar.Link
       href="/navbars"
       active={true}

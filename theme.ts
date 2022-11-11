@@ -34,4 +34,9 @@ export const flowbiteTheme: CustomFlowbiteTheme = {
     itemGroup:
       "list-none border-t border-gray-200 pt-3 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700",
   },
+  navbar:{
+    inner:{
+      base:  "mx-auto flex flex-wrap items-center justify-start"
+    }
+  }
 };
