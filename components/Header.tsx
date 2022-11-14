@@ -222,7 +222,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Navbar fluid={true} rounded={true}
+    <Navbar fluid={true} rounded={false}
 >
   <Navbar.Brand href="https://flowbite.com/">
     <Image

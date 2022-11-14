@@ -13,14 +13,17 @@
     "@prisma/client": "^4.5.0",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.3.2",
+    "multer": "^1.4.5-lts.1",
     "next": "12.3.2",
     "next-auth": "^4.15.0",
+    "next-connect": "^0.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "react-markdown": "^8.0.3"
   },
   "devDependencies": {
+    "@types/multer": "^1.4.7",
     "@types/node": "18.11.7",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",

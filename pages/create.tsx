@@ -3,6 +3,7 @@ import { GetStaticProps } from "next"
 import Layout from '../components/Layout';
 import Router from 'next/router';
 import prisma from '../lib/prisma';
+import UiFileInputButton from '../components/UIFileInputButton';
 
 export const getStaticProps: GetStaticProps = async () => {
     const categories = await prisma.category.findMany();
@@ -42,11 +43,21 @@ const Draft: React.FC<Props> = (props) => {
     }
   };
 
+  const onChange = async (formData: FormData) => {
+    // console.log(...formData);
+    // const response = await uploadFileRequest(formData, (event) => {
+    //   console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
+    // });
+
+    // console.log('response', response);
+  };
+
   return (
     <Layout>
       <div>
+        <h1 className="header">New Draft</h1>
+        <UiFileInputButton label="Upload Single File" uploadFileName="theFiles" onChange={onChange} />
         <form onSubmit={submitData}>
-          <h1 className="header">New Draft</h1>
           <select 
             name="category" 
             id="category"
@@ -75,7 +86,7 @@ const Draft: React.FC<Props> = (props) => {
           <a className="back" href="#" onClick={() => Router.push('/')}>
             or Cancel
           </a>
-        </form>
+        </form> 
       </div>
       <style jsx>{`
       .header {
