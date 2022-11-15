@@ -1,50 +1,62 @@
-import React, { useState } from 'react';
-import { GetStaticProps } from "next"
-import Layout from '../components/Layout';
-import Router from 'next/router';
-import prisma from '../lib/prisma';
-import UiFileInputButton from '../components/UIFileInputButton';
+import React, { useState } from "react";
+import { GetStaticProps } from "next";
+import Layout from "../components/Layout";
+import Router from "next/router";
+import prisma from "../lib/prisma";
+import UiFileInputButton from "../components/UIFileInputButton";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const categories = await prisma.category.findMany();
-    // console.log(categories);
-    return {
-      props: { categories },
-    };
+  const categories = await prisma.category.findMany();
+  // console.log(categories);
+  return {
+    props: { categories },
   };
+};
 
-  type CategoryProps = {
-    id: string;
-    title: string;
-  };
+type CategoryProps = {
+  id: string;
+  title: string;
+};
 
-  type Props = {
-    categories: CategoryProps[]
-  }
+type Props = {
+  categories: CategoryProps[];
+};
 
 const Draft: React.FC<Props> = (props) => {
-  const [category, setCategory] = useState('select');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [category, setCategory] = useState("select");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-        const body = {category, title, content};
-        console.log(body)
-        await fetch('/api/article', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
-          });
-          await Router.push('/drafts');
+      const body = { category, title, content };
+      console.log(body);
+      await fetch("/api/article", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      await Router.push("/drafts");
     } catch (error) {
-        console.error(error)
+      console.error(error);
     }
   };
 
   const onChange = async (formData: FormData) => {
-    // console.log(...formData);
+    console.log(Object.fromEntries(formData));
+    try {
+      await fetch("/api/gallery", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (error) {
+      console.error(error);
+    }
     // const response = await uploadFileRequest(formData, (event) => {
     //   console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
     // });
@@ -56,16 +68,23 @@ const Draft: React.FC<Props> = (props) => {
     <Layout>
       <div>
         <h1 className="header">New Draft</h1>
-        <UiFileInputButton label="Upload Single File" uploadFileName="theFiles" onChange={onChange} />
+        <UiFileInputButton // TODO: Change this once you implement it in gallery and implement select from gallery
+          label="Upload Single File"
+          uploadFileName="theFiles"
+          onChange={onChange}
+        />
         <form onSubmit={submitData}>
-          <select 
-            name="category" 
+          <select
+            name="category"
             id="category"
             onChange={(e) => setCategory(e.target.value)}
-            value={category}>
+            value={category}
+          >
             <option value="select">Select Category</option>
             {props.categories.map((category) => (
-                <option key={category.id} value={category.id}>{category.title}</option>
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
             ))}
           </select>
           <input
@@ -83,17 +102,17 @@ const Draft: React.FC<Props> = (props) => {
             value={content}
           />
           <input disabled={!content || !title} type="submit" value="Create" />
-          <a className="back" href="#" onClick={() => Router.push('/')}>
+          <a className="back" href="#" onClick={() => Router.push("/")}>
             or Cancel
           </a>
-        </form> 
+        </form>
       </div>
       <style jsx>{`
-      .header {
-        font-size: 25px;
-        font-weight: bold;
-        color: #3C4048;
-      }
+        .header {
+          font-size: 25px;
+          font-weight: bold;
+          color: #3c4048;
+        }
         .page {
           background: var(--geist-background);
           padding: 3rem;
@@ -102,7 +121,7 @@ const Draft: React.FC<Props> = (props) => {
           align-items: center;
         }
 
-        input[type='text'],
+        input[type="text"],
         select,
         textarea {
           width: 100%;
@@ -112,7 +131,7 @@ const Draft: React.FC<Props> = (props) => {
           border: 0.125rem solid rgba(0, 0, 0, 0.2);
         }
 
-        input[type='submit'] {
+        input[type="submit"] {
           background: #ececec;
           border: 0;
           padding: 1rem 2rem;

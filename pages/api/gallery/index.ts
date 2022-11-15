@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from 'next-connect';
 import multer from 'multer';
 
@@ -8,7 +9,7 @@ const upload = multer ({
     }),
 })
 
-const apiRoute = nextConnect({
+const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
     onError(error, req, res) {
       res.status(501).json({ error: `Sorry something Happened! ${error.message}` });
     },
@@ -19,7 +20,7 @@ const apiRoute = nextConnect({
 
   apiRoute.use(upload.array('theFiles'));
 
-  apiRoute.post((req, res) => {
+  apiRoute.post((req, res) => { // TODO: save every image to the galley
     res.status(200).json({ data: 'success' });
   });
 
