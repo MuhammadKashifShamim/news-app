@@ -42,9 +42,10 @@ model CategoriesOnArticles {
 
 model Gallery {
   id      String  @id @default(cuid())
-  title   String?
+  title   String
   url     String
-  altText String
+  type    String
+  altText String?
 }
 
 model User {

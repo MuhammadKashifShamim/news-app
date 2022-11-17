@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from 'next-connect';
 import multer from 'multer';
+import prisma from '../../../lib/prisma';
 
 const upload = multer ({
     storage: multer.diskStorage({
@@ -9,7 +10,12 @@ const upload = multer ({
     }),
 })
 
-const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
+type NextApiRequestWithFormData = NextApiRequest &
+  Request & {
+    files: any[];
+  };
+
+const apiRoute = nextConnect<NextApiRequestWithFormData, NextApiResponse>({
     onError(error, req, res) {
       res.status(501).json({ error: `Sorry something Happened! ${error.message}` });
     },
@@ -20,8 +26,18 @@ const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
 
   apiRoute.use(upload.array('theFiles'));
 
-  apiRoute.post((req, res) => { // TODO: save every image to the galley
-    res.status(200).json({ data: 'success' });
+  apiRoute.post(async (req, res) => {
+    const { files, body } = req;
+    console.log(body.type)
+
+    const result = await prisma.gallery.create({
+      data: {
+        title: files[0].originalname.substring(0, files[0].originalname.length - 4),
+        url: files[0].path.substring(files[0].path.indexOf('/') + 1),
+        type: body.type,
+      },
+    });
+    res.json(result);
   });
 
 export default apiRoute;

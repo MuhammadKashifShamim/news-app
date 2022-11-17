@@ -44,7 +44,8 @@ const Draft: React.FC<Props> = (props) => {
   };
 
   const onChange = async (formData: FormData) => {
-    console.log(Object.fromEntries(formData));
+    formData.append("type", "gallery");
+    // console.log(Object.fromEntries(formData));
     try {
       await fetch("/api/gallery", {
         method: "POST",

@@ -1,4 +1,3 @@
-
 import prisma from '../../../lib/prisma';
 
 // PUT /api/publish/:id
