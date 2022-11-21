@@ -1,8 +1,8 @@
-import React from "react"
-import { GetStaticProps } from "next"
-import Layout from "../components/Layout"
-import Post, { PostProps } from "../components/Post"
-import prisma from '../lib/prisma';
+import React from "react";
+import { GetStaticProps } from "next";
+import Layout from "../components/Layout";
+import Post, { PostProps } from "../components/Post";
+import prisma from "../lib/prisma";
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.article.findMany({
@@ -20,41 +20,31 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 type Props = {
-  feed: PostProps[]
-}
+  feed: PostProps[];
+};
 
 const Blog: React.FC<Props> = (props) => {
   return (
     <Layout>
-      <div className="page">
-        <h1 className="header">Public Feed</h1>
-        <main>
+      <div className="container mx-auto">
+        <h1 className="my-3 text-4xl font-bold dark:text-gray-200">Popular</h1>
+        <main className="order-2 mt-4 mb-24 flex-[1_0_16rem]">
           {props.feed.map((post) => (
             <div key={post.id} className="post">
+              <Post post={post} />
+              <Post post={post} />
+              <Post post={post} />
+              <Post post={post} />
+              <Post post={post} />
+              <Post post={post} />
+              <Post post={post} />
               <Post post={post} />
             </div>
           ))}
         </main>
       </div>
-      <style jsx>{`
-        .header {
-          font-size: 25px;
-          font-weight: bold;
-          color: #3C4048;
-        }
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

@@ -220,7 +220,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Navbar fluid={true} rounded={false}>
+    <Navbar fluid={true} rounded={false} className="sticky top-0">
       <Navbar.Brand href="/">
         <Image
           src="/frantic-logo.png"
@@ -258,13 +258,12 @@ const Header: React.FC = () => {
         <DarkThemeToggle className="mr-2" />
       </div>
       <Navbar.Collapse className="ml-5">
-        <Navbar.Link href="/navbars" active={true}>
-          Home
+        <Navbar.Link href="/" active={true}>
+          Popular
         </Navbar.Link>
-        <Navbar.Link href="/navbars">About</Navbar.Link>
-        <Navbar.Link href="/navbars">Services</Navbar.Link>
-        <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-        <Navbar.Link href="/navbars">Contact</Navbar.Link>
+        <Navbar.Link href="/">New</Navbar.Link>
+        <Navbar.Link href="/">Topics</Navbar.Link>
+        <Navbar.Link href="/">Reading List</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
     // <nav>

@@ -2,15 +2,9 @@ import { CustomFlowbiteTheme } from "flowbite-react/lib/esm/components/Flowbite/
 
 export const flowbiteTheme: CustomFlowbiteTheme = {
   footer: {
-    base: "flex flex-col",
+    base: "flex flex-col bg-white dark:bg-gray-800",
     brand: {
       base: "m-6 flex items-center",
-    },
-    groupLink: {
-      base: "flex flex-col flex-wrap text-gray-500 dark:text-white",
-      link: {
-        base: "mb-4 last:mr-0 md:mr-6",
-      },
     },
     icon: {
       base: "text-gray-400 hover:text-gray-900 dark:hover:text-white",
