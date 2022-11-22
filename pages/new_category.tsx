@@ -22,7 +22,7 @@ type Props = {
   categories: CategoryProps[];
 };
 
-const Draft: React.FC<Props> = (props) => {
+const Category: React.FC<Props> = (props) => {
   const [category, setCategory] = useState("select");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -67,8 +67,10 @@ const Draft: React.FC<Props> = (props) => {
 
   return (
     <Layout>
-      <div>
-        <h1 className="header">New Draft</h1>
+      <div className="container mx-auto">
+        <h1 className="my-3 text-4xl font-bold dark:text-gray-200">
+          New Category
+        </h1>
         <UiFileInputButton // TODO: Change this once you implement it in gallery and implement select from gallery
           label="Upload Single File"
           uploadFileName="theFiles"
@@ -146,4 +148,4 @@ const Draft: React.FC<Props> = (props) => {
   );
 };
 
-export default Draft;
+export default Category;

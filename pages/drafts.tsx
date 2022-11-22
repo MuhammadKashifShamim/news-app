@@ -1,9 +1,12 @@
-import React from 'react';
-import { GetServerSideProps } from 'next';
-import { useSession, getSession } from 'next-auth/react';
-import Layout from '../components/Layout';
-import Post, { PostProps } from '../components/Post';
-import prisma from '../lib/prisma';
+import React from "react";
+import { GetServerSideProps } from "next";
+import { useSession, getSession } from "next-auth/react";
+import Router from "next/router";
+import Layout from "../components/Layout";
+import Post, { PostProps } from "../components/Post";
+import { Button } from "flowbite-react";
+import { HiPlus } from "react-icons/hi";
+import prisma from "../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
@@ -38,17 +41,25 @@ const Drafts: React.FC<Props> = (props) => {
   if (!session) {
     return (
       <Layout>
-        <h1>My Drafts</h1>
-        <div>You need to be authenticated to view this page.</div>
+        <h1 className="my-3 text-4xl font-bold dark:text-gray-200">Drafts</h1>
+        <div className="dark:text-gray-200">
+          You need to be authenticated to view this page.
+        </div>
       </Layout>
     );
   }
 
   return (
     <Layout>
-      <div className="page">
-        <h1 className="header">Drafts</h1>
-        <main>
+      <div className="container mx-auto">
+        <div className="mx-auto flex flex-wrap items-center justify-between">
+          <h1 className="my-3 text-4xl font-bold dark:text-gray-200">Drafts</h1>
+          <Button pill={true} href="/new_draft">
+            <HiPlus className="mr-2 h-5 w-5" />
+            Create
+          </Button>
+        </div>
+        <main className="order-2 mt-4 mb-24 flex-[1_0_16rem]">
           {props.drafts.map((post) => (
             <div key={post.id} className="post">
               <Post post={post} />
@@ -56,25 +67,6 @@ const Drafts: React.FC<Props> = (props) => {
           ))}
         </main>
       </div>
-      <style jsx>{`
-      .header {
-        font-size: 25px;
-        font-weight: bold;
-        color: #3C4048;
-      }
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
     </Layout>
   );
 };
