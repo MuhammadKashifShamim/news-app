@@ -259,6 +259,10 @@ const Header: React.FC = () => {
             <Dropdown.Item onClick={() => Router.push("/categories")}>
               Categories
             </Dropdown.Item>
+            <Dropdown.Item onClick={() => Router.push("/gallery")}>
+              Gallery
+            </Dropdown.Item>
+            <Dropdown.Divider />
             <Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (

@@ -1,7 +1,8 @@
 /* eslint-disable react/no-children-prop */
 import React from "react";
 import Router from "next/router";
-import { Card, Avatar } from "flowbite-react";
+import { Card } from "flowbite-react";
+import Image from "next/image";
 
 export type CategoryProps = {
   id: number;
@@ -12,15 +13,23 @@ export type CategoryProps = {
 
 const Category: React.FC<{ category: CategoryProps }> = ({ category }) => {
   return (
-    <Card className="mb-4">
-      <Avatar img={category.icon} rounded={false}>
-        <div className="space-y-1 font-medium dark:text-white">
+    <Card className="mb-2">
+      <div className="grid grid-cols-8 gap-4">
+        <div>
+          <Image
+            src={category.icon}
+            alt={category.title}
+            width="60"
+            height="60"
+          />
+        </div>
+        <div className="space-y-1 font-medium dark:text-white col-span-6 ">
           <div>{category.title}</div>
           <div className="text-sm text-gray-500 dark:text-gray-400">
             {category.description}
           </div>
         </div>
-      </Avatar>
+      </div>
     </Card>
     // <div
     //   onClick={() => Router.push("/category/[id]", `/category/${category.id}`)}
