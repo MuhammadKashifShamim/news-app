@@ -53,9 +53,9 @@ const Categories: React.FC<Props> = (props) => {
             Create
           </Button>
         </div>
-        <main className="order-2 mt-4 mb-24 flex-[1_0_16rem]">
+        <main className="order-2 mt-4 mb-24 flex-[1_0_16rem] grid grid-cols-2 gap-4">
           {props.categories.map((category) => (
-            <div key={category.id} className="post">
+            <div key={category.id}>
               <Category category={category} />
             </div>
           ))}

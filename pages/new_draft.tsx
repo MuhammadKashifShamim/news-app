@@ -41,7 +41,7 @@ const Draft: React.FC<Props> = (props) => {
 
   const onChange = async (formData: FormData) => {
     formData.append("type", "gallery");
-    // console.log(Object.fromEntries(formData));
+    console.log(Object.fromEntries(formData));
     try {
       await fetch("/api/gallery", {
         method: "POST",
@@ -69,8 +69,9 @@ const Draft: React.FC<Props> = (props) => {
         </h1>
         <UiFileInputButton // TODO: Change this once you implement it in gallery and implement select from gallery
           label="Upload Single File"
-          uploadFileName="theFiles"
+          uploadFileName="images"
           onChange={onChange}
+          allowMultipleFiles={true}
         />
         <form onSubmit={submitData}>
           <select

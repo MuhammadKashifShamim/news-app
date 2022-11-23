@@ -24,7 +24,7 @@ const apiRoute = nextConnect<NextApiRequestWithFormData, NextApiResponse>({
     },
   });
 
-  apiRoute.use(upload.array('theFiles'));
+  apiRoute.use(upload.array('images'));
 
   apiRoute.post(async (req, res) => {
     const { files, body } = req;

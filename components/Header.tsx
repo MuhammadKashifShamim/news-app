@@ -225,15 +225,15 @@ const Header: React.FC = () => {
         <Image
           src="/frantic-logo.png"
           className="h-6 sm:h-9"
-          alt="Frantic Logs"
+          alt="Frantic Devlogs"
           width="40"
           height="40"
         />
         <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Frantic Logs
+          Frantic Devlogs
         </span>
       </Navbar.Brand>
-      <div className="absolute right-0 flex justify-between">
+      <div className="absolute right-0 top-3 flex justify-between">
         {session ? (
           <Dropdown
             arrowIcon={false}
@@ -279,12 +279,14 @@ const Header: React.FC = () => {
         <DarkThemeToggle className="mr-2" />
       </div>
       <Navbar.Collapse className="ml-5">
-        <Navbar.Link href="/" active={isActive("/")}>
+        <Navbar.Link onClick={() => Router.replace("/")} active={isActive("/")}>
           Popular
         </Navbar.Link>
-        <Navbar.Link href="/">New</Navbar.Link>
-        <Navbar.Link href="/">Topics</Navbar.Link>
-        <Navbar.Link href="/">Reading List</Navbar.Link>
+        <Navbar.Link onClick={() => Router.replace("/")}>New</Navbar.Link>
+        <Navbar.Link onClick={() => Router.replace("/")}>Topics</Navbar.Link>
+        <Navbar.Link onClick={() => Router.replace("/")}>
+          Reading List
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

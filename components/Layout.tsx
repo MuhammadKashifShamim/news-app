@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = (props) => (
-  <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-gray-900">
+  <div className="flex flex-col overflow-x-hidden bg-slate-50 dark:bg-gray-900">
     <Header />
     <div className="min-h-screen">{props.children}</div>
     <MainFooter />
