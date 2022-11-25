@@ -8,7 +8,14 @@ export default async function handle(req:any, res:any) {
       where: { id: parseInt(postId) },
     });
     res.json(post);
-  } else {
+  } else if(req.method == "PUT"){
+    console.log(req.body)
+    const post = await prisma.article.update({
+      where: { id: parseInt(postId) },
+      data: JSON.parse(req.body)
+    });
+    res.json(post);
+  }else {
     throw new Error(
       `The HTTP ${req.method} method is not supported at this route.`,
     );

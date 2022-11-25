@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['avatars.githubusercontent.com',"localhost:3000","flowbite.com"],
+    unoptimized: true,
   },
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../components/Layout";
-import Post, { PostProps } from "../components/Post";
+import Article, { ArticleProps } from "../components/Article";
 import prisma from "../lib/prisma";
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -10,40 +10,47 @@ export const getStaticProps: GetStaticProps = async () => {
     where: { published: true },
     include: {
       author: {
-        select: { name: true },
+        select: { name: true, image: true },
+      },
+      categories: {
+        select: {
+          category: {
+            select: { title: true },
+          },
+        },
       },
     },
   });
+  // console.log(JSON.stringify(feed));
+  const result = feed.map((feed) => {
+    return {
+      ...feed,
+      categories: feed.categories.map((category) => category.category),
+    };
+  });
   return {
-    props: { feed },
+    props: { feed: JSON.parse(JSON.stringify(result)) }, //this is a workaround to handle date strings cuz next only handles scalar types for performance
     revalidate: 10,
   };
 };
 
 type Props = {
-  feed: PostProps[];
+  feed: ArticleProps[];
 };
 
 const Blog: React.FC<Props> = (props) => {
+  console.log(props.feed);
   return (
     <Layout>
       <Head>
-        <title>Frantic Devlogs</title>
-        <meta name="description" content=" Popular Devlogs" />
+        <title>Logsical.Dev</title>
+        <meta name="description" content="Landing Page" />
       </Head>
       <div className="container mx-auto">
-        <h1 className="my-3 text-4xl font-bold dark:text-gray-200">Popular</h1>
-        <main className="order-2 mt-4 mb-24 flex-[1_0_16rem]">
-          {props.feed.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-              <Post post={post} />
-              <Post post={post} />
-              <Post post={post} />
-              <Post post={post} />
-              <Post post={post} />
-              <Post post={post} />
-              <Post post={post} />
+        <main className="order-2 mt-24 mb-24 flex-[1_0_16rem]">
+          {props.feed.map((article) => (
+            <div key={article.id} className="mx-auto">
+              <Article article={article} />
             </div>
           ))}
         </main>

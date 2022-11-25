@@ -2,6 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { DarkThemeToggle, Navbar, Dropdown, Avatar } from "flowbite-react";
+import {
+  HiOutlineClipboardCheck,
+  HiOutlineCollection,
+  HiOutlinePhotograph,
+  HiOutlineLogout,
+  HiOutlineLogin,
+} from "react-icons/hi";
 import Router, { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 
@@ -225,12 +232,12 @@ const Header: React.FC = () => {
         <Image
           src="/frantic-logo.png"
           className="h-6 sm:h-9"
-          alt="Frantic Devlogs"
+          alt="Logsical.Dev"
           width="40"
           height="40"
         />
         <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Frantic Devlogs
+          Logsical.Dev
         </span>
       </Navbar.Brand>
       <div className="absolute right-0 top-3 flex justify-between">
@@ -253,17 +260,28 @@ const Header: React.FC = () => {
                 {session?.user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item onClick={() => Router.push("/drafts")}>
+            <Dropdown.Item
+              icon={HiOutlineClipboardCheck}
+              onClick={() => Router.push("/drafts")}
+            >
               Drafts
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => Router.push("/categories")}>
+            <Dropdown.Item
+              icon={HiOutlineCollection}
+              onClick={() => Router.push("/categories")}
+            >
               Categories
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => Router.push("/gallery")}>
+            <Dropdown.Item
+              icon={HiOutlinePhotograph}
+              onClick={() => Router.push("/gallery")}
+            >
               Gallery
             </Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
+            <Dropdown.Item icon={HiOutlineLogout} onClick={() => signOut()}>
+              Sign out
+            </Dropdown.Item>
           </Dropdown>
         ) : (
           <Dropdown
@@ -273,7 +291,10 @@ const Header: React.FC = () => {
               <Avatar alt="User settings" className="mr-2" rounded={true} />
             }
           >
-            <Dropdown.Item onClick={() => Router.push("/api/auth/signin")}>
+            <Dropdown.Item
+              icon={HiOutlineLogin}
+              onClick={() => Router.push("/api/auth/signin")}
+            >
               Sign In
             </Dropdown.Item>
           </Dropdown>
@@ -283,12 +304,30 @@ const Header: React.FC = () => {
         <DarkThemeToggle className="mr-2" />
       </div>
       <Navbar.Collapse className="ml-5">
-        <Navbar.Link onClick={() => Router.replace("/")} active={isActive("/")}>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => Router.replace("/popular")}
+          active={isActive("/popular")}
+        >
           Popular
         </Navbar.Link>
-        <Navbar.Link onClick={() => Router.replace("/")}>New</Navbar.Link>
-        <Navbar.Link onClick={() => Router.replace("/")}>Topics</Navbar.Link>
-        <Navbar.Link onClick={() => Router.replace("/")}>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => Router.replace("/latest")}
+          active={isActive("/latest")}
+        >
+          Latest
+        </Navbar.Link>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => Router.replace("/")}
+        >
+          Topics
+        </Navbar.Link>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => Router.replace("/")}
+        >
           Reading List
         </Navbar.Link>
       </Navbar.Collapse>

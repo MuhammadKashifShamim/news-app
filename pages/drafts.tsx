@@ -1,9 +1,8 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import { useSession, getSession } from "next-auth/react";
-import Router from "next/router";
 import Layout from "../components/Layout";
-import Post, { PostProps } from "../components/Post";
+import Article, { ArticleProps } from "../components/Article";
 import { Button } from "flowbite-react";
 import { HiPlus } from "react-icons/hi";
 import prisma from "../lib/prisma";
@@ -22,17 +21,32 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     },
     include: {
       author: {
-        select: { name: true },
+        select: { name: true, image: true },
+      },
+      categories: {
+        select: {
+          category: {
+            select: { title: true },
+          },
+        },
       },
     },
   });
+
+  const result = drafts.map((draft) => {
+    return {
+      ...draft,
+      categories: draft.categories.map((category) => category.category),
+    };
+  });
+
   return {
-    props: { drafts },
+    props: { drafts: JSON.parse(JSON.stringify(result)) },
   };
 };
 
 type Props = {
-  drafts: PostProps[];
+  drafts: ArticleProps[];
 };
 
 const Drafts: React.FC<Props> = (props) => {
@@ -60,9 +74,9 @@ const Drafts: React.FC<Props> = (props) => {
           </Button>
         </div>
         <main className="order-2 mt-4 mb-24 flex-[1_0_16rem]">
-          {props.drafts.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
+          {props.drafts.map((article) => (
+            <div key={article.id} className="article">
+              <Article article={article} />
             </div>
           ))}
         </main>

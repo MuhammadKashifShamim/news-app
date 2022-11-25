@@ -144,7 +144,7 @@ const Draft: React.FC<Props> = (props) => {
                     src={headerImage}
                     alt="Selected Image"
                     layout="fill"
-                    objectFit="contain"
+                    objectFit="cover"
                   />
                 </div>
               </div>
@@ -167,6 +167,7 @@ const Draft: React.FC<Props> = (props) => {
                 className=" bg-slate-50 rounded-lg dark:bg-gray-700 text-gray-900 dark:text-white"
                 value={content}
                 onChange={setContent}
+                height={500}
               />
             </div>
             <div className="flex flex-wrap gap-2">

@@ -15,10 +15,10 @@ const MainFooter: React.FC = () => {
           <Footer.Brand
             href="/"
             src="/frantic-logo.png"
-            alt="Frantic Devlogs"
-            name="Frantic Devlogs"
+            alt="Logsical.Dev"
+            name="Logsical.Dev"
           />
-          <Footer.Copyright href="/" by="Frantic Devlogs™" year={2022} />
+          <Footer.Copyright href="/" by="Logsical.Dev™" year={2022} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
