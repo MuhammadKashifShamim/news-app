@@ -243,6 +243,7 @@ const Header: React.FC = () => {
       <div className="absolute right-0 top-3 flex justify-between">
         {session ? (
           <Dropdown
+            className="z-50"
             arrowIcon={false}
             inline={true}
             label={
@@ -320,7 +321,8 @@ const Header: React.FC = () => {
         </Navbar.Link>
         <Navbar.Link
           className="cursor-pointer"
-          onClick={() => Router.replace("/")}
+          onClick={() => Router.replace("/topics")}
+          active={isActive("/topics")}
         >
           Topics
         </Navbar.Link>

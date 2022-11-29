@@ -39,17 +39,17 @@ type Props = {
 };
 
 const Blog: React.FC<Props> = (props) => {
-  console.log(props.feed);
+  // console.log(props.feed);
   return (
     <Layout>
       <Head>
         <title>Logsical.Dev</title>
         <meta name="description" content="Landing Page" />
       </Head>
-      <div className="container mx-auto">
-        <main className="order-2 mt-24 mb-24 flex-[1_0_16rem]">
+      <div className="container mx-auto my-24">
+        <main className="masonry sm:masonry-sm md:masonry-md">
           {props.feed.map((article) => (
-            <div key={article.id} className="mx-auto">
+            <div key={article.id} className="break-inside">
               <Article article={article} />
             </div>
           ))}
