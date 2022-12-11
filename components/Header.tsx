@@ -22,14 +22,14 @@ const Header: React.FC = () => {
     <Navbar fluid={true} rounded={false} className="sticky top-0">
       <Navbar.Brand href="/">
         <Image
-          src="/frantic-logo.png"
+          src="/logo.png"
           className="h-6 sm:h-9"
           alt="tinkrng.dev"
           width="40"
           height="40"
         />
-        <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          tinkrng.dev
+        <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold font-unbounded dark:text-white">
+          Tinkering Dev
         </span>
       </Navbar.Brand>
       <div className="absolute right-0 top-3 flex justify-between">

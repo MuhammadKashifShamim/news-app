@@ -14,9 +14,10 @@ const MainFooter: React.FC = () => {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Brand
             href="/"
-            src="/frantic-logo.png"
+            src="/logo.png"
             alt="tinkrng.dev"
-            name="tinkrng.dev"
+            name="Tinkering Dev"
+            className="font-unbounded"
           />
           <Footer.Copyright href="/" by="tinkrng.dev™" year={2022} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
