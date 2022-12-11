@@ -84,9 +84,8 @@ const Post: React.FC<ArticleProps> = (props) => {
     return <div>Authenticating ...</div>;
   }
   const userHasValidSession = Boolean(session);
-  console.log("Valid User Session:", userHasValidSession);
   const postBelongsToUser = session?.user?.name === props.author?.name;
-  console.log(props);
+
   let title = props.title;
   if (!props.published) {
     title = `${title} (Draft)`;
@@ -101,7 +100,7 @@ const Post: React.FC<ArticleProps> = (props) => {
   return (
     <Layout>
       <Head>
-        <title>{title}</title>
+        <title>tinkrng.dev - {title}</title>
         <meta name="description" content={props.content} />
       </Head>
       <div className="container mx-auto mt-6">

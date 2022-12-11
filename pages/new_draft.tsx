@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import Router from "next/router";
 import { CategoryProps } from "../components/Category";
@@ -82,6 +83,10 @@ const Draft: React.FC<Props> = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>tinkrng.dev - New Draft</title>
+        <meta name="description" content="Create new draft for article" />
+      </Head>
       <div className="container mx-auto">
         <h1 className="my-3 text-4xl font-bold dark:text-gray-200">
           New Draft

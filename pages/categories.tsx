@@ -1,5 +1,6 @@
 import React from "react";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useSession, getSession } from "next-auth/react";
 import Router from "next/router";
 import Layout from "../components/Layout";
@@ -43,6 +44,10 @@ const Categories: React.FC<Props> = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>tinkrng.dev - Categories</title>
+        <meta name="description" content="Categories" />
+      </Head>
       <div className="container mx-auto">
         <div className="mx-auto flex flex-wrap items-center justify-between">
           <h1 className="my-3 text-4xl font-bold dark:text-gray-200">

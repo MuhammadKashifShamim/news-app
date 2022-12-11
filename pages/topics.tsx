@@ -1,10 +1,8 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import Router from "next/router";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import Category, { CategoryProps } from "../components/Category";
-import { Button } from "flowbite-react";
-import { HiPlus } from "react-icons/hi";
 import prisma from "../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
@@ -19,8 +17,13 @@ type Props = {
 };
 
 const Topics: React.FC<Props> = (props) => {
+  //console.log(props.categories);
   return (
     <Layout>
+      <Head>
+        <title>tinkrng.dev - Topics</title>
+        <meta name="description" content="Topics for articles" />
+      </Head>
       <div className="container mx-auto">
         <div className="mx-auto flex flex-wrap items-center justify-between">
           <h1 className="my-3 text-4xl font-bold dark:text-gray-200">Topics</h1>

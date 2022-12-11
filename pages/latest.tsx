@@ -44,7 +44,7 @@ const Latest: React.FC<Props> = (props) => {
   return (
     <Layout>
       <Head>
-        <title>Logsical.Dev</title>
+        <title>tinkrng.dev - Latest News</title>
         <meta name="description" content=" Latest New Devlogs" />
       </Head>
       <div className="container mx-auto">

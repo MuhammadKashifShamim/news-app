@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import Router from "next/router";
 import prisma from "../lib/prisma";
@@ -79,6 +80,10 @@ const Category: React.FC<Props> = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>tinkrng.dev - New Category</title>
+        <meta name="description" content="Create new category" />
+      </Head>
       <div className="container mx-auto">
         <h1 className="my-3 text-4xl font-bold dark:text-gray-200">
           New Category

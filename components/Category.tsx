@@ -13,7 +13,10 @@ export type CategoryProps = {
 
 const Category: React.FC<{ category: CategoryProps }> = ({ category }) => {
   return (
-    <Card className="mb-2">
+    <Card
+      className="mb-2 cursor-pointer hover:brightness-50"
+      onClick={() => Router.push("/topic/[id]", `/topic/${category.id}`)}
+    >
       <div className="grid grid-cols-8 gap-4">
         <div>
           <Image

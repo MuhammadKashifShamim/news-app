@@ -44,7 +44,7 @@ const Popular: React.FC<Props> = (props) => {
   return (
     <Layout>
       <Head>
-        <title>Logsical.Dev</title>
+        <title>tinkrng.dev - Popular News</title>
         <meta name="description" content=" Popular Devlogs" />
       </Head>
       <div className="container mx-auto">

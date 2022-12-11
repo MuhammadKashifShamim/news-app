@@ -1,5 +1,6 @@
 import React from "react";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useSession, getSession } from "next-auth/react";
 import Layout from "../components/Layout";
 import Article, { ArticleProps } from "../components/Article";
@@ -65,6 +66,10 @@ const Drafts: React.FC<Props> = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>tinkrng.dev - Drafts</title>
+        <meta name="description" content="Drafts" />
+      </Head>
       <div className="container mx-auto">
         <div className="mx-auto flex flex-wrap items-center justify-between">
           <h1 className="my-3 text-4xl font-bold dark:text-gray-200">Drafts</h1>

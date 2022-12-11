@@ -43,7 +43,7 @@ const Blog: React.FC<Props> = (props) => {
   return (
     <Layout>
       <Head>
-        <title>Logsical.Dev</title>
+        <title>tinkrng.dev - Home</title>
         <meta name="description" content="Landing Page" />
       </Head>
       <div className="container mx-auto my-24">
