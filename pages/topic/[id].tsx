@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import { Card } from "flowbite-react";
 import { CategoryProps } from "../../components/Category";
 import Article, { ArticleProps } from "../../components/Article";
+import prisma from "../../lib/prisma";
 
 type Props = {
   category: CategoryProps;

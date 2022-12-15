@@ -19,7 +19,6 @@ import Layout from "../../components/Layout";
 import { ArticleProps } from "../../components/Article";
 import { useSession } from "next-auth/react";
 import prisma from "../../lib/prisma";
-import styles from "../../styles/markdown-styles.module.css";
 
 export async function getServerSideProps({ params }) {
   // console.log(typeof (params?.id));
