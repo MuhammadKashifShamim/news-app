@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Unbounded&display=swap");
+
+@font-face {
+  font-family: "Pacifico";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/Pacifico-Regular.ttf") format("ttf");
+}
 
 @layer components {
   @variants responsive {

@@ -38,3 +38,6 @@ next-env.d.ts
 
 # File uploads
 /public/uploads
+
+# Prisma Migrations
+/prisma/migrations
