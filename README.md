@@ -32,6 +32,6 @@ yarn dev
 
 [ ] Edit Categories
 
-## Notice
+## WIP Notice
 
 This is currently a work in progress. Some features still needs to be implemented
